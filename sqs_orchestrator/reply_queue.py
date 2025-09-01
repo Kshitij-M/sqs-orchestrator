@@ -124,7 +124,7 @@ class ReplyQueue(ReplyQueueBase):
         Returns:
             str: The sweeper queue name with .fifo suffix.
         """
-        return self._name + "_sweeper.fifo"
+        return self._name + "sweeper.fifo"
 
     def _remove_sweeper_queue(self):
         """
