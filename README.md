@@ -1,4 +1,4 @@
-# python-sqs-client
+# sqs-orchestrator
 
 High-level library for asynchronous communication using Amazon SQS. Enables easy building of message producers that expect responses, as well as consumers that send responses.
 
