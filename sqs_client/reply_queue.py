@@ -117,17 +117,61 @@ class ReplyQueue(ReplyQueueBase):
         self._idle_queue_sweeper.set_name(self._name)
         self._idle_queue_sweeper.start()
 
+    def _get_sweeper_queue_name(self) -> str:
+        """
+        Construct the sweeper queue name based on the reply queue name.
+        
+        Returns:
+            str: The sweeper queue name with .fifo suffix.
+        """
+        return self._name + "_sweeper.fifo"
+
+    def _remove_sweeper_queue(self):
+        """
+        Remove the associated sweeper FIFO queue.
+        
+        This method attempts to delete the sweeper queue that was created by the
+        idle queue sweeper component. Handles exceptions gracefully if the queue
+        doesn't exist or cannot be deleted.
+        """
+        try:
+            sweeper_queue_name = self._get_sweeper_queue_name()
+            
+            # Get the sweeper queue URL
+            try:
+                response = self._connection.client.get_queue_url(
+                    QueueName=sweeper_queue_name
+                )
+                sweeper_queue_url = response['QueueUrl']
+                
+                # Delete the sweeper queue
+                self._connection.client.delete_queue(QueueUrl=sweeper_queue_url)
+                self._logger.info(f"Removed sweeper queue: {sweeper_queue_name}")
+                
+            except self._connection.client.exceptions.QueueDoesNotExist:
+                # Queue doesn't exist, which is fine
+                pass
+            except Exception as e:
+                self._logger.exception(f"Failed to remove sweeper queue {sweeper_queue_name}: {e}")
+                
+        except Exception as e:
+            self._logger.exception(f"Error in sweeper queue removal: {e}")
+
     def remove_queue(self):
         """
         Remove the queue and associated components.
 
         This method stops the heartbeat, idle queue sweeper, deletes the queue using the SQS connection,
-        and uninstalls the multiprocess handler from the logger.
+        removes the associated sweeper queue, and uninstalls the multiprocess handler from the logger.
         """
         if self._queue:
             self._stop_heartbeat()
             self._idle_queue_sweeper.stop()
             self._connection.client.delete_queue(QueueUrl=self._queue.url)
+            
+            # Remove the associated sweeper FIFO queue
+            self._remove_sweeper_queue()
+            
             self._queue = None
             uninstall_mp_handler(self._logger)
 
