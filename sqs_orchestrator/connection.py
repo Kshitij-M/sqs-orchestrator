@@ -1,6 +1,6 @@
 import boto3
 
-from sqs_client.contracts import SqsConnection as SqsConnectionBase
+from sqs_orchestrator.contracts import SqsConnection as SqsConnectionBase
 
 
 class SqsConnection(SqsConnectionBase):

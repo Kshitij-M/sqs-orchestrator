@@ -53,9 +53,9 @@ CONFIG = {
 import json
 import uuid
 from datetime import datetime
-from sqs_client.factories import ReplyQueueFactory, PublisherFactory
-from sqs_client.message import RequestMessage
-from sqs_client.exceptions import ReplyTimeout
+from sqs_orchestrator.factories import ReplyQueueFactory, PublisherFactory
+from sqs_orchestrator.message import RequestMessage
+from sqs_orchestrator.exceptions import ReplyTimeout
 
 class TaskSender:
     def __init__(self, config):
@@ -118,9 +118,9 @@ finally:
 
 ```python
 import json
-from sqs_client.contracts import MessageHandler
-from sqs_client.subscriber import MessagePoller
-from sqs_client.factories import SubscriberFactory, PublisherFactory
+from sqs_orchestrator.contracts import MessageHandler
+from sqs_orchestrator.subscriber import MessagePoller
+from sqs_orchestrator.factories import SubscriberFactory, PublisherFactory
 
 class ProcessingHandler(MessageHandler):
     def process_message(self, message):
@@ -202,7 +202,7 @@ message = RequestMessage(
 ### Error Handling
 
 ```python
-from sqs_client.exceptions import ReplyTimeout
+from sqs_orchestrator.exceptions import ReplyTimeout
 
 try:
     response = message.get_response(timeout=30)
@@ -282,10 +282,10 @@ class TaskSender:
             sweeper_name = f"{prefix}sweeper.fifo"
             
             try:
-                response = self.sqs_client.get_queue_url(QueueName=sweeper_name)
-                self.sqs_client.delete_queue(QueueUrl=response['QueueUrl'])
+                response = self.sqs_orchestrator.get_queue_url(QueueName=sweeper_name)
+                self.sqs_orchestrator.delete_queue(QueueUrl=response['QueueUrl'])
                 print(f"Cleaned up sweeper queue: {sweeper_name}")
-            except self.sqs_client.exceptions.QueueDoesNotExist:
+            except self.sqs_orchestrator.exceptions.QueueDoesNotExist:
                 pass  # Already deleted
 ```
 

@@ -6,11 +6,11 @@ from time import sleep, time
 
 from multiprocessing_logging import install_mp_handler, uninstall_mp_handler
 
-from sqs_client.contracts import IdleQueueSweeper, Message
-from sqs_client.contracts import ReplyQueue as ReplyQueueBase
-from sqs_client.contracts import SqsConnection, Subscriber
-from sqs_client.exceptions import ReplyTimeout
-from sqs_client.utils import str_timestamp
+from sqs_orchestrator.contracts import IdleQueueSweeper, Message
+from sqs_orchestrator.contracts import ReplyQueue as ReplyQueueBase
+from sqs_orchestrator.contracts import SqsConnection, Subscriber
+from sqs_orchestrator.exceptions import ReplyTimeout
+from sqs_orchestrator.utils import str_timestamp
 
 
 class ReplyQueue(ReplyQueueBase):

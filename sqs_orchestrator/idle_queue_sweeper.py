@@ -4,10 +4,10 @@ from typing import List
 from multiprocessing import Process
 from time import sleep
 
-from sqs_client.contracts import IdleQueueSweeper as IdleQueueSweeperBase
-from sqs_client.contracts import Publisher, SqsConnection, Subscriber
-from sqs_client.message import RequestMessage
-from sqs_client.utils import timestamp
+from sqs_orchestrator.contracts import IdleQueueSweeper as IdleQueueSweeperBase
+from sqs_orchestrator.contracts import Publisher, SqsConnection, Subscriber
+from sqs_orchestrator.message import RequestMessage
+from sqs_orchestrator.utils import timestamp
 
 TRIGGER_MESSAGE_BODY = "SweepingTrigger"
 

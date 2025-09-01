@@ -1,7 +1,7 @@
 import random
 from time import time
 
-from sqs_client.contracts import (
+from sqs_orchestrator.contracts import (
     Message as MessageBase,
     MessageList as MessageListBase,
     ReplyQueue as ReplyQueue,
