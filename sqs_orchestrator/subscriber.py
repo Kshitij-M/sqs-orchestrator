@@ -2,11 +2,11 @@ from logging import exception
 from time import time
 from typing import List, Optional
 
-from sqs_client.contracts import MessageHandler
-from sqs_client.contracts import MessagePoller as MessagePollerBase
-from sqs_client.contracts import Publisher, SqsConnection
-from sqs_client.contracts import Subscriber as SubscriberBase
-from sqs_client.message import Message, MessageList, RequestMessage
+from sqs_orchestrator.contracts import MessageHandler
+from sqs_orchestrator.contracts import MessagePoller as MessagePollerBase
+from sqs_orchestrator.contracts import Publisher, SqsConnection
+from sqs_orchestrator.contracts import Subscriber as SubscriberBase
+from sqs_orchestrator.message import Message, MessageList, RequestMessage
 
 
 class Subscriber(SubscriberBase):

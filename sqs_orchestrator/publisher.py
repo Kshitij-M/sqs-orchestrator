@@ -2,8 +2,8 @@ from time import sleep
 
 from boto3.resources.base import ServiceResource
 
-from sqs_client.contracts import Publisher as PublisherBase
-from sqs_client.contracts import RequestMessage, SqsConnection
+from sqs_orchestrator.contracts import Publisher as PublisherBase
+from sqs_orchestrator.contracts import RequestMessage, SqsConnection
 
 
 class Publisher(PublisherBase):

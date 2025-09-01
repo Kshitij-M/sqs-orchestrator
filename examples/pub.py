@@ -1,8 +1,8 @@
 import logging 
 
-from sqs_client.factories import ReplyQueueFactory, PublisherFactory
-from sqs_client.message import RequestMessage
-from sqs_client.exceptions import ReplyTimeout
+from sqs_orchestrator.factories import ReplyQueueFactory, PublisherFactory
+from sqs_orchestrator.message import RequestMessage
+from sqs_orchestrator.exceptions import ReplyTimeout
 
 config = {
     "access_key": "",

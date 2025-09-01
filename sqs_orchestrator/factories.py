@@ -1,8 +1,8 @@
-from sqs_client.connection import SqsConnection
-from sqs_client.idle_queue_sweeper import IdleQueueSweeper
-from sqs_client.publisher import Publisher
-from sqs_client.reply_queue import ReplyQueue
-from sqs_client.subscriber import Subscriber
+from sqs_orchestrator.connection import SqsConnection
+from sqs_orchestrator.idle_queue_sweeper import IdleQueueSweeper
+from sqs_orchestrator.publisher import Publisher
+from sqs_orchestrator.reply_queue import ReplyQueue
+from sqs_orchestrator.subscriber import Subscriber
 
 
 class SqsConnectionFactory:

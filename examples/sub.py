@@ -1,6 +1,6 @@
-from sqs_client.subscriber import MessagePoller 
-from sqs_client.contracts import MessageHandler
-from sqs_client.factories import SubscriberFactory, PublisherFactory
+from sqs_orchestrator.subscriber import MessagePoller 
+from sqs_orchestrator.contracts import MessageHandler
+from sqs_orchestrator.factories import SubscriberFactory, PublisherFactory
 
 config = {
     "access_key": "",
