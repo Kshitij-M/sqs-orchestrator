@@ -21,8 +21,17 @@ This library is based on the [amazon-sqs-java-temporary-queues-client](https://g
 
 ## Installation
 
+Since this package is not yet published to PyPI, you need to install it directly from the GitHub repository:
+
 ```bash
-pip install python-sqs-client
+# Clone the repository
+git clone https://github.com/Kshitij-M/sqs-orchestrator.git
+
+# Navigate to the project directory
+cd sqs-orchestrator
+
+# Install the package
+pip install .
 ```
 
 ## Quick Start
